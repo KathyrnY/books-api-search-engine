@@ -1,5 +1,5 @@
 import './App.css';
-import { Outlet, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { 
   ApolloClient,
@@ -9,9 +9,6 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
@@ -35,17 +32,14 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Navbar />
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<SearchBooks />} />
-          <Route path="/saved" element={<SavedBooks />} />
-        </Route>
-        <Route path="*" element={<h1 className="display-2">Wrong page!</h1>} />
-      </Router>
-    </ApolloProvider>
+    <>
+      <ApolloProvider client={client}>
+      <Navbar />
+      <Outlet />
+      </ApolloProvider>
+    </>
   );
 }
+
 
 export default App;
