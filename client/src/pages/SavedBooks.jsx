@@ -16,7 +16,10 @@ const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_ME, {
     fetchPolicy: 'network-only' });
 
-  const [removeBook] = useMutation(REMOVE_BOOK);
+    const [removeBook] = useMutation(REMOVE_BOOK,{ refetchQueries: [
+      QUERY_ME,
+      'me'
+    ]})
 
   const userData = data?.me || {};
 
