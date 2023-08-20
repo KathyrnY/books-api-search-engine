@@ -1,5 +1,6 @@
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
 const { User } = require("../models");
+const { AuthenticationError } = require('apollo-server');
 
 const resolvers = {
   Query: {
